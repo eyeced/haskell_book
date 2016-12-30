@@ -1,5 +1,0 @@
-{-# NoMonomorphismRestriction #-}
-
-module DetermineTheType where
-
-
