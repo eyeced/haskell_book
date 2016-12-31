@@ -1,7 +1,6 @@
 # Chapter 6 Notes
 
 ## Typeclasses
-
 * How a set of types are consumed or used in computations. 
 * It can also be defined as constrained polymorphism.
 
@@ -79,7 +78,7 @@ instance Eq (Identity a) where
 ```
 Now v and v' are supposidely are not of Eq type so it can throw an error for fixing that we should declare the equal function like this. 
 
-``haskell
+```haskell
 instance Eq a => Eq (Identity a) where
   (==) (Identity v) (Identity v') = v == v'
 ```
