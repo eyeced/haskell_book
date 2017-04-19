@@ -83,3 +83,36 @@ instance Eq a => Eq (Identity a) where
   (==) (Identity v) (Identity v') = v == v'
 ```
 Now as a is also of Eq type so Haskell compiler would throw a compile time error if a is not of Eq type
+
+## Ord instances
+
+In the DayOfWeek example 
+```haskell
+data DayOfWeek =
+  Mon | Tue | Weds | Thu | Fri | Sat | Sun
+  deriving (Ord, Show)
+```
+this would implement the Ord functionality, as previously we already had Eq instance hence we can derive the Ord as well, for Ord Eq is mandatory.
+We can also have the definition like this as well, and to make Fri always greater we can also have the implementation of the Ord instance as well
+```haskell
+data DayOfWeek =
+  Mon | Tue | Weds | Thu | Fri | Sat | Sun
+  deriving (Eq, Show)
+
+instance Ord DayOfWeek where
+  compare Fri Fri = EQ
+  compare Fri _   = GT
+  compare _ Fir   = LT
+  compare _ _     = EQ
+```
+in this implementation Fri is always the greatest, but all other comparisons are not working
+
+## Ord implies Eq
+Eq is a superclass of Ord, so if in any function we say Ord a then it implies that it is also an Eq a nad we can do a == a'
+
+## Instances are dispatched by type
+Typeclass instances are unique pairings of the typeclass and a type, they define the ways to implement the typeclass methods for that type.
+* a typeclass defines a set of functions and / or values
+* types have instances of the typeclass
+* the instances specify the ways that type uses the functions of the typeclass..
+
