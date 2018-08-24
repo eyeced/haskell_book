@@ -23,10 +23,10 @@ postorder :: BinaryTree a -> [a]
 postorder Leaf = []
 postorder (Node left a right) = postorder left ++ postorder right ++ [a]
 
--- foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
--- foldTree f b Leaf = b
--- foldTree f b (Node left a right) = foldTree f leftB right
---   where leftB = foldTree f (f a) left
+foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
+foldTree f z Leaf = z
+foldTree f z (Node left a right) = foldTree f leftB right
+  where leftB = f a (foldTree f z left)
 
 ----------------------
 -- test above methods
